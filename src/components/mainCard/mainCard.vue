@@ -82,7 +82,12 @@ import imageBitcoin from '../../assets/img/bitcoinImage.png';
                 event.preventDefault();
             },
             insertDataState(){
-                this.dataBitcoin = this.dataCoin
+
+                const objectBitcoin = {
+                    currentPrice:this.dataCoin,
+                    date:this.dataCoin
+                }
+                this.dataBitcoin = objectBitcoin
             }
         }
     }
