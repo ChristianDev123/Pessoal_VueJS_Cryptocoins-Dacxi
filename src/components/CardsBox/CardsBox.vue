@@ -39,6 +39,16 @@ import RowCards from '../RowCards/RowCards.vue';
                     {id:2,nameCoin:"Name Coin",currentPrice:"",datePrice:""}
                 ]
             }
-        }
+        },
+        methods:{
+            APIReceiver(){
+                fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccosmos%2Cterra-luna&vs_currencies=usd&include_last_")
+                .then((response)=>response.json())
+                .then((json)=>console.log(json))
+            }
+        },
+        mounted(){
+            this.APIReceiver();
+        },
     }
 </script>
