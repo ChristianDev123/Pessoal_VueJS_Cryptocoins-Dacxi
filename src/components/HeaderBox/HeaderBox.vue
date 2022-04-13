@@ -1,39 +1,46 @@
 <template>
-    <section >
-        <div class="
+    <section class="
         flex
-        flex-col
+        flex-row
         justify-end
-        sm:flex-row
-        gap-4
-        px-24
         py-4
-        
+        ">
+        <div class="
+            flex
+            flex-wrap
+            gap-7
         ">
             <a href="" >
-                <ButtonHeader>
-                    LinkedIn Dev
-                </ButtonHeader>
+                LinkedIn Dev
             </a>
             <a href="">
-                <ButtonHeader>
-                    GitHub Rep.
-                </ButtonHeader>
+                GitHub Rep.
             </a>
             <a href="">
-                <ButtonHeader>
-                    Vercel Deploy
-                </ButtonHeader>
+                Vercel Deploy
             </a>
         </div>
     </section>
+    <hr>
 </template>
-<script>
-import ButtonHeader from '../buttonHeader/buttonHeader.vue' 
+<style scoped>
+    a{
+        color:#808080;
+        font-size:20px;
+        font-weight: 500;
+    }
+    a:hover{
+        color:var(--primary);
+        font-size:22px;
+    }
+    hr{
+        background:var(--line-datail);
+    }
+</style>
+<script> 
     export default {
         name:"Header",
         components:{
-            ButtonHeader
         }
     }
 </script>
