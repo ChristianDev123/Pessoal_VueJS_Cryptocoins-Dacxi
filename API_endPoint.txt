@@ -1,1 +1,0 @@
-url to get info about coins compared with usd: https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cterra-luna&order=market_cap_asc&per_page=3&page=1&sparkline=false
