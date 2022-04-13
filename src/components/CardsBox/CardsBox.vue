@@ -42,13 +42,45 @@ import RowCards from '../RowCards/RowCards.vue';
         },
         methods:{
             APIReceiver(){
-                fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccosmos%2Cterra-luna&vs_currencies=usd&include_last_")
+                fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cterra-luna&order=market_cap_asc&per_page=3&page=1&sparkline=false")
                 .then((response)=>response.json())
-                .then((json)=>console.log(json))
-            }
+                .then((json)=>{
+                    json.forEach((coin) => {
+                        if(coin.id === "bitcoin"){
+                            this.setBitcoinState(coin);
+                        }else{
+                            this.setAnotherCoinsState(coin);
+                        }
+                    });
+                });
+            },
+            setBitcoinState(data){
+                var date = new Date;
+                const month = String(date.getMonth()).length === 1? `0${date.getMonth()+1}`:date.getMonth();
+                date = `${date.getDate()}/${month}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}.${date.getSeconds()}`
+                const objBitcoin = {
+                    id:1,
+                    nameCoin:`Name:${data.name}\n Symbol:${data.symbol}`,
+                    currentPrice:data.current_price,
+                    datePrice:date
+                };
+                this.bitcoinData = objBitcoin;
+            },
+            setAnotherCoinsState(data){
+                var date = new Date;
+                const month = String(date.getMonth()).length === 1? `0${date.getMonth()+1}`:date.getMonth();
+                date = `${date.getDate()}/${month}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}.${date.getSeconds()}`
+                const objAnotherCoins = [
+                    {id:1,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},
+                    {id:2,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},
+                    {id:3,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date}
+                ];
+                this.coinsData = objAnotherCoins;
+            },
         },
         mounted(){
             this.APIReceiver();
+            setInterval(()=>this.APIReceiver(),60000);
         },
     }
 </script>
