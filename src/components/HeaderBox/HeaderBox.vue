@@ -4,10 +4,11 @@
         flex-row
         justify-end
         py-4
+        px-7
         ">
         <div class="
-            flex
-            flex-wrap
+            grid
+            grid-cols-3
             gap-7
         ">
             <a href="" >
@@ -35,6 +36,11 @@
     }
     hr{
         background:var(--line-datail);
+    }
+    @media screen and (max-width:500px) {
+        a{
+            font-size:12px;
+        }
     }
 </style>
 <script> 

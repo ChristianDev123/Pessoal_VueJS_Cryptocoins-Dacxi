@@ -18,8 +18,8 @@
             justify-center
             text-center
             line
-        ">
-            <div class="nameSection">
+        " id="contacts">
+            <div class="nameSection py-2">
                 <h2>Contacts Developer</h2>
             </div>
             <div class="list" id="contacts">
@@ -41,7 +41,7 @@
             justify-center
             text-center
         ">
-            <div class="nameSection">
+            <div class="nameSection py-2">
                 <h2>Technologies</h2>
             </div>
             <div class="list" id="tecnologies">
@@ -86,9 +86,19 @@
         background:var(--footerBackground);
         padding:5px;
     }
-    @media screen and (max-width:800px){
-        #Project{
+    @media screen and (max-width:768px){
+        #Project,#contacts{
             border-right:none;
+        }
+
+    }
+    @media screen and (max-width:500px){
+        .nameSection{
+            font-size:20px;
+        }
+        img{
+            width:25px;
+            height:25px;
         }
     }    
 </style>
