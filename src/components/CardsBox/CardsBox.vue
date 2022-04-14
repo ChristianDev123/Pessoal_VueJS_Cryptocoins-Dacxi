@@ -63,7 +63,7 @@ import RowCards from '../RowCards/RowCards.vue';
                 date = `${date.getDate()}/${month}/${date.getFullYear()} ${hour}:${minutes}.${seconds}`
                 const objAnotherCoin = {
                     id:this.countId,
-                    nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,
+                    nameCoin:`Name: ${data.name} Symbol: ${data.symbol}`,
                     currentPrice:data.current_price.toLocaleString('en-US',{style:'currency',currency:'USD'}),
                     datePrice:date
                 };

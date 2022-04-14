@@ -118,7 +118,6 @@ import tinyImageBitcoin from '../../assets/img/tinyImageBitcoin.jpg'
                 const inputsValues = document.querySelectorAll('.dateInput');
                 const objDateTime = {
                     date:inputsValues[0].value,
-                    time:inputsValues[1].val
                 }
                 this.dataPerDateTime = objDateTime;
                 this.intervalWrapper('stop');
@@ -148,7 +147,7 @@ import tinyImageBitcoin from '../../assets/img/tinyImageBitcoin.jpg'
                     const url = `https://api.coingecko.com/api/v3/coins/bitcoin/history?date=${strDate}&localization=false`;
                     fetch(url)
                     .then((response)=>response.json())
-                    .then(({market_data})=>this.insertDataState(market_data,dateArray.reduce((ac,nv)=>`${ac}/`+nv), market_data.current_price.usd.toFixed(2)));
+                    .then(({market_data})=>this.insertDataState(market_data,dateArray.reduce((ac,nv)=>`${ac}/`+nv), market_data.current_price.usd.toLocaleString('en-US',{style:"currency",currency:'USD'})));
                 }
             }
         },
