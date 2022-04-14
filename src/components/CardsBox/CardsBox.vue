@@ -1,16 +1,17 @@
 <template>
-    <section class="mainCard">
-      <MainCard :dataCoin="bitcoinData"/>
-    </section>
-    <section
-        class="grid grid-cols-1 lg:grid-cols-3"     
-    >
-        <div
-            class="py-3 lg:py-10 px-2"
-            v-for="coins in coinsData"
-            :key="coins.id"
-        >
-            <RowCards :dataCoin="coins"/>
+    <section class="
+        grid
+        grid-cols-1
+    ">
+        <div class="mainCard">
+            <MainCard :dataCoin="bitcoinData"/>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3">
+            <div class="py-3 lg:py-10 px-2"
+                v-for="coins in coinsData"
+                :key="coins.id">
+                <RowCards :dataCoin="coins"/>
+            </div>
         </div>
     </section>
 </template>
@@ -69,7 +70,10 @@ import RowCards from '../RowCards/RowCards.vue';
             setAnotherCoinsState(data){
                 var date = new Date;
                 const month = String(date.getMonth()).length === 1? `0${date.getMonth()+1}`:date.getMonth();
-                date = `${date.getDate()}/${month}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}.${date.getSeconds()}`
+                const hour = String(date.getHours()).length === 1?`0${date.getHours()}`:date.getHours();
+                const minutes = String(date.getMinutes()).length === 1?`0${date.getMinutes()}`:date.getMinutes();
+                const seconds = String(date.getSeconds()).length === 1?`0${date.getSeconds()}`:date.getSeconds();
+                date = `${date.getDate()}/${month}/${date.getFullYear()} ${hour}:${minutes}.${seconds}`
                 const objAnotherCoins = [
                     {id:1,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},
                     {id:2,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},

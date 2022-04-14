@@ -13,6 +13,7 @@
 </template>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
   *{
     font-family: 'Nunito', sans-serif;
   }

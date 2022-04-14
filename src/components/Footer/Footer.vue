@@ -1,32 +1,20 @@
 <template>
     <hr>
-    <section class="flex flex-wrap justify-center gap-10 footerBox">
-        <div class="
-            flex
-            flex-col
-            justify-center
-            text-center
-            line
-        " id="Project">
+    <section class="grid grid-cols-1 sm:grid-cols-4 justify-center">
+        <div class="flex items-center text-center line">
             <div class="nameSection">
                 <h2>Dashboard CryptoCoin</h2>
             </div>
         </div>
-        <div class="
-            flex
-            flex-col
-            justify-center
-            text-center
-            line
-        " id="contacts">
+        <div class="flex flex-col sm:col-span-2 justify-center text-center line">
             <div class="nameSection py-2">
                 <h2>Contacts Developer</h2>
             </div>
-            <div class="list" id="contacts">
-                <ul>
+            <div class="list">
+                <ul class='flex flex-col items-center'>
                     <li v-for="contact in contactsDev" :key="contact.id" >
                         <a :href="contact.link">
-                            <div class="flex flex-row gap-5">
+                            <div class="flex gap-5">
                                 <img :src="contact.image" :alt="contact.platform"/>
                                 <p>{{contact.text}}</p>
                             </div>
@@ -35,19 +23,14 @@
                 </ul>
             </div>
         </div>
-        <div class="
-            flex
-            flex-col
-            justify-center
-            text-center
-        ">
+        <div class="flex flex-col justify-center text-center">
             <div class="nameSection py-2">
                 <h2>Technologies</h2>
             </div>
-            <div class="list" id="tecnologies">
-                <ul>
+            <div class="list">
+                <ul class="flex flex-col items-center">
                     <li v-for="tecnology in technologiesUsed" :key="tecnology.id">
-                        <div class="flex flex-row gap-5">
+                        <div class="flex gap-5">
                             <img :src="tecnology.image" :alt="tecnology.name + ' image'">
                             <p>{{tecnology.name}}</p>
                         </div>
@@ -63,12 +46,6 @@
         height:45px;
         width:45px;
     }
-    #tecnologies ul{
-        display:flex;
-        flex-direction: column;
-        align-items:center;
-        justify-content: center;
-    }
     .nameSection{
         font-size:30px;
         color:var(--primary);
@@ -82,15 +59,14 @@
         background:var(--line-detail);
         height:2px;
     }
-    .footerBox{
+    section{
         background:var(--footerBackground);
         padding:5px;
     }
     @media screen and (max-width:768px){
-        #Project,#contacts{
+        .line{
             border-right:none;
         }
-
     }
     @media screen and (max-width:500px){
         .nameSection{
@@ -119,7 +95,7 @@ export default {
             contactsDev:[
                 {id:1,image:gmailIcon,platform:"Gmail", link:"",text:"christian.lima999@gmail.com"},
                 {id:2,image:gitHubIcon,platform:"Github", link:"https://github.com/ChristianDev123",text:"github.com/ChristianDev123"},
-                {id:3,image:linkedinIcon,platform:"LinkedIn", link:"https://linkedin.com/in/christian-santana-040821214/",text:"linkedin.com/in/christian-santana-040821214/"}
+                {id:3,image:linkedinIcon,platform:"LinkedIn", link:"https://linkedin.com/in/christian-santana-040821214/",text:"linkedin.com/christian-santana"}
             ],
             technologiesUsed:[
                 {id:1,name:"CSS3",image:CSSImage},

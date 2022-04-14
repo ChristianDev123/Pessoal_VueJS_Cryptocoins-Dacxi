@@ -3,8 +3,6 @@
         grid
         grid-cols-1
         sm:grid-cols-2
-        px-10
-        py-5
         boxSecCard"
     >
         <div class="flex flex-col justify-center text-center px-2">
@@ -25,6 +23,7 @@
 <style scoped>
     .boxSecCard{
         border:1px solid black;
+        padding:10px;
     }
     h3, h4{
         color:var(--primary);

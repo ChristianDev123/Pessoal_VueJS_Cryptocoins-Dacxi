@@ -15,11 +15,11 @@
                     <p class="py-4">Insert a date to view price:</p>
                     <form @submit="submitHandler($event)">
                         <div class="flex flex-wrap gap-3">
-                            <input class="dateInput" type="date" id="">
-                            <input class="dateInput" type="time" id="">
+                            <input class="dateInput" type="date">
                         </div>
-                        <div class=" py-4">
+                        <div class="py-4 flex flex-row gap-3">
                             <input type="submit" value="Send">
+                            <input type="button" value="Current" @Click="intervalWrapper('start')">
                         </div>
                     </form>
                 </div>
@@ -38,11 +38,14 @@
         color:var(--primary);
         font-size:20px;
     }
-    input[type="submit"]{
+    span{
+        font-size:10px;
+    }
+    input[type="submit"],input[type="button"]{
         border:2px solid var(--primary);
         padding:0px 30px;
     }
-    input[type="submit"]:hover{
+    input[type="submit"]:hover,input[type="button"]:hover{
         color:white;
         padding:2px 37px;
         background:var(--primary);
@@ -53,9 +56,6 @@
         border:2px solid var(--primary);
         padding:0 5px;
     }
-    span{
-        font-size:10px;
-    }
     @media screen and (min-width:500px){
         .image{
             padding:25px;
@@ -64,7 +64,6 @@
         }
     }
 </style>
-
 <script>
 import imageBitcoin from '../../assets/img/bitcoinImage.png';
     export default {
@@ -75,27 +74,60 @@ import imageBitcoin from '../../assets/img/bitcoinImage.png';
                 dataBitcoin:{
                     currentPrice:'',
                     date:'',
-                }
+                },
+                dataPerDateTime:[],
+                viewer:'',
             }
         },
         props:{
             dataCoin:Object
         },
         mounted(){
-            setInterval(()=>this.insertDataState(),2000);
+            this.intervalWrapper("start");
         },
         methods:{
             submitHandler(event){
                 event.preventDefault();
+                const inputsValues = document.querySelectorAll('.dateInput');
+                const objDateTime = {}
+                inputsValues.forEach((input,index)=>{
+                    if(index === 0){
+                        objDateTime["date"] = input.value;
+                    }else{
+                        objDateTime["time"] = input.value;
+                    }
+                });
+                this.dataPerDateTime = objDateTime;
+                this.intervalWrapper('stop');
+                this.apiPerDatetime();
             },
-            insertDataState(){
+            insertDataState(coin,date='',price=0){
                 const objectBitcoin = {
-                    nameCoin:this.dataCoin.nameCoin,
-                    currentPrice:this.dataCoin.currentPrice,
-                    date:this.dataCoin.datePrice
+                    nameCoin:'Name: bitcoin Symbol: btc',
+                    currentPrice: price || coin.currentPrice,
+                    date:date || coin.datePrice 
                 }
                 this.dataBitcoin = objectBitcoin
+            },
+            intervalWrapper(command){
+                if(command==="start"){
+                    this.viewer = setInterval(()=>this.insertDataState(this.dataCoin),2000);
+                }else{
+                    clearInterval(this.viewer);
+                    this.viewer = false;
+                }
+            },
+            apiPerDatetime(){
+                const dateArray = this.dataPerDateTime.date.split('-');
+                dateArray.reverse();
+                const strDate = dateArray.reduce((ac,nv)=> `${ac}-`+nv);
+                if(!this.viewer){
+                    const url = `https://api.coingecko.com/api/v3/coins/bitcoin/history?date=${strDate}&localization=false`;
+                    fetch(url)
+                    .then((response)=>response.json())
+                    .then(({market_data})=>this.insertDataState(market_data,dateArray.reduce((ac,nv)=>`${ac}/`+nv), market_data.current_price.usd.toFixed(2)));
+                }
             }
-        }
+        },
     }
 </script>
