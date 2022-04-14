@@ -1,17 +1,17 @@
 <template>
     <hr>
     <section class="grid grid-cols-1 sm:grid-cols-4 justify-center">
-        <div class="flex items-center text-center line">
+            <div class="flex items-center justify-center line">
             <div class="nameSection">
                 <h2>Dashboard CryptoCoin</h2>
             </div>
         </div>
-        <div class="flex flex-col sm:col-span-2 justify-center text-center line">
+        <div class="flex flex-col sm:col-span-2 justify-center items-center line">
             <div class="nameSection py-2">
                 <h2>Contacts Developer</h2>
             </div>
             <div class="list">
-                <ul class='flex flex-col items-center'>
+                <ul>
                     <li v-for="contact in contactsDev" :key="contact.id" >
                         <a :href="contact.link">
                             <div class="flex gap-5">
@@ -23,12 +23,12 @@
                 </ul>
             </div>
         </div>
-        <div class="flex flex-col justify-center text-center">
+        <div class="flex flex-col justify-center items-center">
             <div class="nameSection py-2">
                 <h2>Technologies</h2>
             </div>
             <div class="list">
-                <ul class="flex flex-col items-center">
+                <ul>
                     <li v-for="tecnology in technologiesUsed" :key="tecnology.id">
                         <div class="flex gap-5">
                             <img :src="tecnology.image" :alt="tecnology.name + ' image'">
@@ -55,7 +55,6 @@
         padding-right: 20px;
     }
     hr{
-        width:100%;
         background:var(--line-detail);
         height:2px;
     }

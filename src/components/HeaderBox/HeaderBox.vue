@@ -5,13 +5,13 @@
         </div>
         <div class="flex justify-end items-center py-4 px-7">
             <div class="grid grid-cols-1 sm:grid-cols-3">
-                <a href="https://www.linkedin.com/in/christian-santana-040821214/" class='px-2'>
+                <a href="https://www.linkedin.com/in/christian-santana-040821214/" target="_blank" class='px-2'>
                     LinkedIn Dev
                 </a>
-                <a class='px-2' href="https://github.com/ChristianDev123">
+                <a class='px-2' href="https://github.com/ChristianDev123" target="_blank">
                     GitHub Rep.
                 </a>
-                <a class='px-2' href="">
+                <a class='px-2' href="#">
                     Vercel Deploy
                 </a>
             </div>
@@ -22,47 +22,63 @@
 <style scoped>
     a{
         color:#808080;
-        font-size:20px;
         font-weight: 500;
     }
     a:hover{
         color:var(--primary);
-        font-size:22px;
+        transition:.5s;
     }
     hr{
         background:var(--line-datail);
     }
     h1{
-        font-size:50px;
         color:var(--primary);
         font-family:'Square Peg', cursive;
     }
-    @media screen and (max-width:700px){
+    @media screen and (min-width:300px) {
         h1{
-            font-size:32px;
+            font-size:21px;
         }
-    }
-    @media screen and (max-width:500px) {
         a{
             font-size:12px;
-        }
+        }   
+    }
+    @media screen and (min-width:440px) {
         h1{
-            font-size:20px;
+            font-size:29px;
         }
     }
-    @media screen and (max-width:300px) {
+    @media screen and (min-width:550px) {
         h1{
-            font-size:15px;
+            font-size:38px;
         }
         a{
-            font-size:8px;
+            font-size:15px;
+        }
+    }
+    @media screen and (min-width:640px){
+        a{
+            font-size:14px;
+        }
+    }
+    @media screen and (min-width:750px){
+        a{
+            font-size:18px;
+        }
+    }
+    @media screen and (min-width:850px) {
+        a{
+            font-size:18px;
+        }
+    }
+    @media screen and (min-width:1500px) {
+        a{
+            font-size:25px
         }
     }
 </style>
 <script> 
     export default {
-        name:"Header",
-        components:{
-        }
+        name:"Header"
     }
 </script>

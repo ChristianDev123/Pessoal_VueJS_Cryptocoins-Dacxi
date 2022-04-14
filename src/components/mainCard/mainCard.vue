@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto px-4 py-4 rounded-md" id="mainCard">
+    <div class="mx-auto px-4 py-4 rounded-md" id="mainCard">
         <div class="flex flex-col justify-center image">
             <img :src="image" alt="BitCoin Image">
             <h2 class="text-center">{{dataBitcoin.nameCoin}}</h2>    
@@ -14,18 +14,18 @@
                 <div class="showData">
                     <p class="py-4">Insert a date to view price:</p>
                     <form @submit="submitHandler($event)">
-                        <div class="flex flex-wrap gap-3">
+                        <div class='text-center dateWrapper'>
                             <input class="dateInput" type="date">
                         </div>
-                        <div class="py-4 flex flex-row gap-3">
-                            <input type="submit" value="Send">
+                        <div class="py-4 flex flex-col sm:flex-row gap-3">
+                            <input type="submit" value="Send" required>
                             <input type="button" value="Current" @Click="intervalWrapper('start')">
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="flex flex-col items-end justify-end">
-                <iframe class="hidden sm:inline" src="https://giphy.com/embed/LukAHGCMfxMbK" frameBorder="0" allowFullScreen></iframe>
+            <div class="flex items-end justify-center">
+                <img :src="tinyimage" class='hidden sm:inline tinyImage' alt="Little Image Bitcoin">
             </div>
         </div>
     </div>
@@ -37,6 +37,10 @@
     .showData{
         color:var(--primary);
         font-size:20px;
+    }
+    .dateInput{
+        border:2px solid var(--primary);
+        padding:0 5px;
     }
     span{
         font-size:10px;
@@ -52,25 +56,48 @@
         transition:.7s;
         border-radius:10px;
     }
-    .dateInput{
-        border:2px solid var(--primary);
-        padding:0 5px;
+    @media screen and (min-width:300px) {
+        .showData{
+            font-size:12px;
+        }
+        .image{
+            font-size:8px;
+        }
     }
-    @media screen and (min-width:500px){
+    @media screen and (min-width:600px) {
+        .showData{
+            font-size:17px;
+        }
+        .image{
+            padding:5px;
+            font-size:10px;
+        }
+    }
+    @media screen and (min-width:800px){
         .image{
             padding:25px;
             font-size:12px;
             color:var(--primary);
         }
+        .dateWrapper{
+            text-align:left;
+        }
+    }
+    .tinyImage{
+        width:170px;
+        height:200px;
+        border-radius:10px;
     }
 </style>
 <script>
 import imageBitcoin from '../../assets/img/bitcoinImage.png';
+import tinyImageBitcoin from '../../assets/img/tinyImageBitcoin.jpg'
     export default {
         name:"MainCard",
         data(){
             return{
                 image:imageBitcoin,
+                tinyimage:tinyImageBitcoin,
                 dataBitcoin:{
                     currentPrice:'',
                     date:'',
@@ -89,14 +116,10 @@ import imageBitcoin from '../../assets/img/bitcoinImage.png';
             submitHandler(event){
                 event.preventDefault();
                 const inputsValues = document.querySelectorAll('.dateInput');
-                const objDateTime = {}
-                inputsValues.forEach((input,index)=>{
-                    if(index === 0){
-                        objDateTime["date"] = input.value;
-                    }else{
-                        objDateTime["time"] = input.value;
-                    }
-                });
+                const objDateTime = {
+                    date:inputsValues[0].value,
+                    time:inputsValues[1].val
+                }
                 this.dataPerDateTime = objDateTime;
                 this.intervalWrapper('stop');
                 this.apiPerDatetime();

@@ -1,13 +1,10 @@
 <template>
-    <section class="
-        grid
-        grid-cols-1
-    ">
-        <div class="mainCard">
+    <section class="grid grid-cols-1">
+        <div class="mainCard mb-10 lg:mb-0">
             <MainCard :dataCoin="bitcoinData"/>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3">
-            <div class="py-3 lg:py-10 px-2"
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <div class="py-3 lg:py-10"
                 v-for="coins in coinsData"
                 :key="coins.id">
                 <RowCards :dataCoin="coins"/>
@@ -15,13 +12,6 @@
         </div>
     </section>
 </template>
-<style scoped>
-    @media screen and (max-width:1024px){
-        .mainCard{
-            margin-bottom:40px;
-        }
-    }
-</style>
 <script>
 import MainCard from '../mainCard/mainCard.vue';
 import RowCards from '../RowCards/RowCards.vue';
@@ -34,16 +24,13 @@ import RowCards from '../RowCards/RowCards.vue';
         data(){
             return{
                 bitcoinData:{},
-                coinsData:[
-                    {id:0,nameCoin:"Name Coin",currentPrice:"",datePrice:""},
-                    {id:1,nameCoin:"Name Coin",currentPrice:"",datePrice:""},
-                    {id:2,nameCoin:"Name Coin",currentPrice:"",datePrice:""}
-                ]
+                coinsData:[],
+                countId:0
             }
         },
         methods:{
             APIReceiver(){
-                fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cterra-luna&order=market_cap_asc&per_page=3&page=1&sparkline=false")
+                fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Ccosmos%2Cethereum%2Cterra-luna&order=market_cap_asc&per_page=3&page=1&sparkline=false")
                 .then((response)=>response.json())
                 .then((json)=>{
                     json.forEach((coin) => {
@@ -62,7 +49,7 @@ import RowCards from '../RowCards/RowCards.vue';
                 const objBitcoin = {
                     id:1,
                     nameCoin:`Name:${data.name}\n Symbol:${data.symbol}`,
-                    currentPrice:data.current_price,
+                    currentPrice:data.current_price.toLocaleString('en-US',{style:"currency",currency:'USD'}),
                     datePrice:date
                 };
                 this.bitcoinData = objBitcoin;
@@ -74,13 +61,21 @@ import RowCards from '../RowCards/RowCards.vue';
                 const minutes = String(date.getMinutes()).length === 1?`0${date.getMinutes()}`:date.getMinutes();
                 const seconds = String(date.getSeconds()).length === 1?`0${date.getSeconds()}`:date.getSeconds();
                 date = `${date.getDate()}/${month}/${date.getFullYear()} ${hour}:${minutes}.${seconds}`
-                const objAnotherCoins = [
-                    {id:1,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},
-                    {id:2,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date},
-                    {id:3,nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,currentPrice:data.current_price,datePrice:date}
-                ];
-                this.coinsData = objAnotherCoins;
+                const objAnotherCoin = {
+                    id:this.countId,
+                    nameCoin:`Name: ${data.name} \nSymbol: ${data.symbol}`,
+                    currentPrice:data.current_price.toLocaleString('en-US',{style:'currency',currency:'USD'}),
+                    datePrice:date
+                };
+                this.insertAnotherCoinsState(objAnotherCoin);
+                this.countId++;
             },
+            insertAnotherCoinsState(object){
+                if(this.coinsData.length === 3){
+                    this.coinsData = [];
+                }
+                this.coinsData.push(object);
+            }
         },
         mounted(){
             this.APIReceiver();
