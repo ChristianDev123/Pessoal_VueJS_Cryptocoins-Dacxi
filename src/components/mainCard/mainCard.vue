@@ -15,10 +15,10 @@
                     <p class="py-4">Insert a date to view price:</p>
                     <form @submit="submitHandler($event)">
                         <div class='text-center dateWrapper'>
-                            <input class="dateInput" type="date">
+                            <input class="dateInput" type="date" required>
                         </div>
                         <div class="py-4 flex flex-col sm:flex-row gap-3">
-                            <input type="submit" value="Send" required>
+                            <input type="submit" value="Send">
                             <input type="button" value="Current" @Click="intervalWrapper('start')">
                         </div>
                     </form>
