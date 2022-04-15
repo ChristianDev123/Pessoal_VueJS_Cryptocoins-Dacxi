@@ -41,7 +41,10 @@
         }
         a{
             font-size:12px;
-        }   
+        }
+        a:hover{
+            font-size: 14px;
+        }
     }
     @media screen and (min-width:440px) {
         h1{
@@ -55,6 +58,9 @@
         a{
             font-size:15px;
         }
+        a:hover{
+            font-size: 18px;
+        }
     }
     @media screen and (min-width:640px){
         a{
@@ -65,6 +71,9 @@
         a{
             font-size:18px;
         }
+        a:hover{
+            font-size: 22px;
+        }
     }
     @media screen and (min-width:850px) {
         a{
@@ -74,6 +83,9 @@
     @media screen and (min-width:1500px) {
         a{
             font-size:25px
+        }
+        a:hover{
+            font-size: 27px;
         }
     }
 </style>

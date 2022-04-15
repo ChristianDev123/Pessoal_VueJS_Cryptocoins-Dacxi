@@ -19,20 +19,24 @@
     h3, h4{
         color:var(--primary);
     }
-    h4,h3,p{
+    h3{
+        font-size:14px;
+        font-weight: bold;
+    }
+    h4,p{
         font-size:12px;
     }
     .containerCard{
         box-shadow:4px 4px 8px rgba(0, 0, 0, 0.442);
     }
     @media screen and (min-width:900px) {
-        h4,h3,p{
+        h4,p{
             font-size:15px;
         }   
     }
     @media screen and (min-width:1024px) {
-        h4,h3,p{
-            font-size:10px;
+        h4,p{
+            font-size:13px;
         }
     }
 </style>
