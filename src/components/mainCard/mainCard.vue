@@ -7,9 +7,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 ">
             <div class="mx-auto">
                 <div class="showData">
-                    <p>Current Price (USD): {{dataBitcoin.currentPrice}}</p>
-                    <p>Date Price: {{dataBitcoin.date}}</p>
-                    <span>(Brasilia, Brazil Time Zone)</span>
+                    <p><span class='label'>Current Price (USD):</span> {{dataBitcoin.currentPrice}}</p>
+                    <p><span class='label'>Date Price:</span> {{dataBitcoin.date}}</p>
+                    <span class='ps'>(Brasilia, Brazil Time Zone)</span>
                 </div>
                 <div class="showData">
                     <p class="py-4">Insert a date to view price:</p>
@@ -42,7 +42,7 @@
         border:2px solid var(--primary);
         padding:0 5px;
     }
-    span{
+    span.ps{
         font-size:10px;
     }
     input[type="submit"],input[type="button"]{

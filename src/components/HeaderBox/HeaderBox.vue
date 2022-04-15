@@ -1,9 +1,14 @@
 <template>
-    <section class="grid grid-cols-2">
-        <div class="flex px-5 items-center">
+    <section class="grid grid-cols-5">
+        <div class="flex px-5 items-center col-span-2">
             <h1>DashBoard Bitcoin Dacxi</h1>
         </div>
-        <div class="flex justify-end items-center py-4 px-7">
+        <div class='flex justify-center items-center'>
+            <button @click="$emit('theme'),changeTheme()" :class="this.theme?'dark':'light'">
+                <img :src="buttonImage" alt="theme selector">
+            </button>
+        </div>
+        <div class="flex justify-end items-center py-4 px-7 col-span-2">
             <div class="grid grid-cols-1 sm:grid-cols-3">
                 <a href="https://www.linkedin.com/in/christian-santana-040821214/" target="_blank" class='px-2'>
                     LinkedIn Dev
@@ -34,6 +39,11 @@
     h1{
         color:var(--primary);
         font-family:'Square Peg', cursive;
+    }
+    img{
+        width:50px;
+        background:white;
+        border-radius:100%;
     }
     @media screen and (min-width:300px) {
         h1{
@@ -88,9 +98,25 @@
             font-size: 27px;
         }
     }
+
 </style>
 <script> 
+import moonIcon from '../../assets/img/moonIcon.svg';
+import sunIcon from '../../assets/img/sunIcon.svg';
     export default {
-        name:"Header"
+        name:"Header",
+        emits:['theme'],
+        data(){
+            return{
+                theme:false,
+                buttonImage:sunIcon
+            }
+        },
+        methods:{
+            changeTheme(){
+                this.theme = !this.theme;
+                this.buttonImage = this.theme?moonIcon:sunIcon
+            }
+        }
     }
 </script>
