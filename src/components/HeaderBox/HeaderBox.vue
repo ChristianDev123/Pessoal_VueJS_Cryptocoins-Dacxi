@@ -13,10 +13,10 @@
                 <a href="https://www.linkedin.com/in/christian-santana-040821214/" target="_blank" class='px-2'>
                     LinkedIn Dev
                 </a>
-                <a class='px-2' href="https://github.com/ChristianDev123" target="_blank">
+                <a class='px-2' href="https://github.com/ChristianDev123/SPA_Dashboard_Cryptocoins_Dacxi/" target="_blank">
                     GitHub Rep.
                 </a>
-                <a class='px-2' href="#">
+                <a class='px-2' href="https://dashboard-cryptocoins-dacxi-rd10nh7z1-christiandev123.vercel.app/">
                     Vercel Deploy
                 </a>
             </div>
