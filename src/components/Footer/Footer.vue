@@ -92,7 +92,7 @@ export default {
     data(){
         return{
             contactsDev:[
-                {id:1,image:gmailIcon,platform:"Gmail", link:"",text:"christian.lima999@gmail.com"},
+                {id:1,image:gmailIcon,platform:"Gmail", link:"#",text:"christian.lima999@gmail.com"},
                 {id:2,image:gitHubIcon,platform:"Github", link:"https://github.com/ChristianDev123",text:"github.com/ChristianDev123"},
                 {id:3,image:linkedinIcon,platform:"LinkedIn", link:"https://linkedin.com/in/christian-santana-040821214/",text:"linkedin.com/christian-santana"}
             ],
