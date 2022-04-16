@@ -10,21 +10,38 @@
                 <RowCards :dataCoin="coins"/>
             </div>
         </div>
+        <div>
+            <h2 class='text-center py-2'> Bitcoin's price in an interval of three days</h2>
+            <div id='chartWrapper'>
+                <ChartBitcoin :dataBitcoin="bitcoinDataLastThreedays"/>
+            </div>
+        </div>
     </section>
 </template>
+<style scoped>
+    #chartWrapper{
+        background: whitesmoke;
+        border-radius:10px;
+        padding:5px;
+
+    }
+</style>
 <script>
 import MainCard from '../mainCard/mainCard.vue';
 import RowCards from '../RowCards/RowCards.vue';
+import ChartBitcoin from '../ChartBitcoin/ChartBitcoin.vue';
     export default {
         name:"CardsBox",       
         components:{
             MainCard,
-            RowCards
+            RowCards,
+            ChartBitcoin
         },
         data(){
             return{
                 bitcoinData:{},
                 coinsData:[],
+                bitcoinDataLastThreedays:[],
                 countId:0
             }
         },
@@ -75,11 +92,37 @@ import RowCards from '../RowCards/RowCards.vue';
                     this.coinsData = [];
                 }
                 this.coinsData.push(object);
+            },
+            APIReceiverChart(){
+                fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3&interval=daily")
+                .then((response)=>response.json())
+                .then((json)=>{
+                    this.tratamentDataChart(json.prices);
+                })
+            },
+            tratamentDataChart(coinData){
+                const dates = coinData.map((coins)=>{
+                    const d = new Date(coins[0])
+                    return d.toLocaleDateString()
+                });
+                const prices = coinData.map((coins)=>coins[1].toFixed(2));
+                
+                this.bitcoinDataLastThreedays = {
+                    labels:dates,
+                    datasets:[{
+                        label: 'Price Bitcoin',
+                        backgroundColor: '#216190',
+                        borderColor:'rgba(33,97,144,0.75)',
+                        data:prices,
+                        borderWidth:3
+                    }]
+                }
             }
         },
-        mounted(){
+        created(){
             this.APIReceiver();
             setInterval(()=>this.APIReceiver(),60000);
+            this.APIReceiverChart();
         },
     }
 </script>

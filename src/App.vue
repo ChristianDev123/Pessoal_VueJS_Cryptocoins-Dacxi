@@ -18,10 +18,6 @@
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
   }
-  main{
-    padding:35px 0 70px 0;
-    width:70vw;
-  }
   :root{
     --primary:#216190;
     --line-detail:rgba(33,97,144,0.75);
@@ -70,10 +66,23 @@
   }
 
 </style>
+
+<style scoped>
+  div{
+    background:whitesmoke;
+    padding:2px;
+    border-radius:10px;
+  }
+  main{
+    padding:35px 0 70px 0;
+    width:70vw;
+  }
+</style>
 <script>
   import Header from './components/HeaderBox/HeaderBox.vue';
   import Footer from './components/Footer/Footer.vue';
   import CardsBox from './components/CardsBox/CardsBox.vue';
+  import ChartBitcoin from './components/ChartBitcoin/ChartBitcoin.vue';
   import './assets/tailwind.css';  
   
   export default{
@@ -81,7 +90,8 @@
       components:{
         Header,
         Footer,
-        CardsBox
+        CardsBox,
+        ChartBitcoin
       },
       data(){
         return{
@@ -100,5 +110,5 @@
           }
         }
       }
-    };
+  };
 </script>
