@@ -9,6 +9,7 @@
     <Footer/>
   </footer>
 </template>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
@@ -63,6 +64,12 @@
   .darkModeApp input[type='submit']:hover,
   .darkModeApp input[type='button']:hover{
     background:var(--important-texts);
+  }
+  .darkModeApp p.ps{
+    color:var(--primary)
+  }
+  .darkModeApp p.label{
+    color:var(--important-texts);
   }
 
 </style>

@@ -2,17 +2,17 @@
     <div class="mx-auto px-4 py-4 rounded-md" id="mainCard">
         <div class="flex flex-col justify-center image">
             <img :src="image" alt="BitCoin Image">
-            <h2 class="text-center">{{dataBitcoin.nameCoin}}</h2>    
+            <p class="text-center">{{dataBitcoin.nameCoin}}</p>    
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 ">
             <div class="mx-auto">
                 <div class="showData">
-                    <p><span class='label'>Current Price (USD):</span> {{dataBitcoin.currentPrice}}</p>
-                    <p><span class='label'>Date Price:</span> {{dataBitcoin.date}}</p>
-                    <span class='ps'>(Brasilia, Brazil Time Zone)</span>
+                    <p><span class='label font-bold block sm:inline'>Current Price (USD):</span> {{dataBitcoin.currentPrice}}</p>
+                    <p><span class='label font-bold block sm:inline'>Date Price:</span> {{dataBitcoin.date}}</p>
+                    <p class='ps'>(Brasilia, Brazil Time Zone)</p>
                 </div>
                 <div class="showData">
-                    <p class="py-4">Insert a date to view price:</p>
+                    <p class="py-4 font-bold label">Insert a date to view price:</p>
                     <form @submit="submitHandler($event)">
                         <div class='text-center dateWrapper'>
                             <input class="dateInput" type="date" required>
@@ -36,14 +36,22 @@
     }
     .showData{
         color:var(--primary);
-        font-size:20px;
+    }
+    .showData p{
+        font-size:12px;
+    }
+    .showData p span{
+        font-size:14px;
+    }
+    p.ps{
+        font-size: 9px;
+    }
+    .image p{
+        font-size:10px;
     }
     .dateInput{
         border:2px solid var(--primary);
         padding:0 5px;
-    }
-    span.ps{
-        font-size:10px;
     }
     input[type="submit"],input[type="button"]{
         border:2px solid var(--primary);
@@ -56,14 +64,6 @@
         transition:.7s;
         border-radius:10px;
     }
-    @media screen and (min-width:300px) {
-        .showData{
-            font-size:12px;
-        }
-        .image{
-            font-size:8px;
-        }
-    }
     @media screen and (min-width:600px) {
         .showData{
             font-size:17px;
@@ -74,10 +74,17 @@
         }
     }
     @media screen and (min-width:800px){
-        .image{
-            padding:25px;
-            font-size:12px;
-            color:var(--primary);
+        .showData p{
+            font-size:16px;
+        }
+        .showData p span{
+            font-size:18px;
+        }
+        p.ps{
+            font-size:13px;
+        }
+        .image p{
+            font-size:14px;
         }
         .dateWrapper{
             text-align:left;
@@ -111,6 +118,7 @@ import tinyImageBitcoin from '../../assets/img/tinyImageBitcoin.jpg'
         },
         mounted(){
             this.intervalWrapper("start");
+            this.configInputDate();
         },
         methods:{
             submitHandler(event){
@@ -149,6 +157,11 @@ import tinyImageBitcoin from '../../assets/img/tinyImageBitcoin.jpg'
                     .then((response)=>response.json())
                     .then(({market_data})=>this.insertDataState(market_data,dateArray.reduce((ac,nv)=>`${ac}/`+nv), market_data.current_price.usd.toLocaleString('en-US',{style:"currency",currency:'USD'})));
                 }
+            },
+            configInputDate(){
+                const inputDate = document.querySelector('.dateInput');
+                inputDate.max = new Date().toISOString().split('T')[0];
+                inputDate.min = '2013-05-01'
             }
         },
     }

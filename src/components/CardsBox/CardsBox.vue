@@ -23,7 +23,6 @@
         background: whitesmoke;
         border-radius:10px;
         padding:5px;
-
     }
 </style>
 <script>
@@ -62,7 +61,10 @@ import ChartBitcoin from '../ChartBitcoin/ChartBitcoin.vue';
             setBitcoinState(data){
                 var date = new Date;
                 const month = String(date.getMonth()).length === 1? `0${date.getMonth()+1}`:date.getMonth();
-                date = `${date.getDate()}/${month}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}.${date.getSeconds()}`
+                const hour = String(date.getHours()).length === 1?`0${date.getHours()}`:date.getHours();
+                const minutes = String(date.getMinutes()).length === 1?`0${date.getMinutes()}`:date.getMinutes();
+                const seconds = String(date.getSeconds()).length === 1?`0${date.getSeconds()}`:date.getSeconds();
+                date = `${date.getDate()}/${month}/${date.getFullYear()} ${hour}:${minutes}.${seconds}`;
                 const objBitcoin = {
                     id:1,
                     nameCoin:`Name:${data.name}\n Symbol:${data.symbol}`,
@@ -77,12 +79,15 @@ import ChartBitcoin from '../ChartBitcoin/ChartBitcoin.vue';
                 const hour = String(date.getHours()).length === 1?`0${date.getHours()}`:date.getHours();
                 const minutes = String(date.getMinutes()).length === 1?`0${date.getMinutes()}`:date.getMinutes();
                 const seconds = String(date.getSeconds()).length === 1?`0${date.getSeconds()}`:date.getSeconds();
-                date = `${date.getDate()}/${month}/${date.getFullYear()} ${hour}:${minutes}.${seconds}`
+                date = `${date.getDate()}/${month}/${date.getFullYear()}`
+                const time = `${hour}:${minutes}.${seconds}`;
                 const objAnotherCoin = {
                     id:this.countId,
-                    nameCoin:`Name: ${data.name} Symbol: ${data.symbol}`,
+                    nameCoin:data.name,
+                    symbolCoin:data.symbol,
                     currentPrice:data.current_price.toLocaleString('en-US',{style:'currency',currency:'USD'}),
-                    datePrice:date
+                    datePrice:date,
+                    timePrice:time
                 };
                 this.insertAnotherCoinsState(objAnotherCoin);
                 this.countId++;
