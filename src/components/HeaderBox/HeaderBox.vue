@@ -10,31 +10,15 @@
         </div>
         <div class="flex justify-end items-center py-4 px-7 col-span-2">
             <div class="grid grid-cols-1 sm:grid-cols-3">
-                <a href="https://www.linkedin.com/in/christian-santana-040821214/" target="_blank" class='px-2'>
-                    LinkedIn Dev
-                </a>
-                <a class='px-2' href="https://github.com/ChristianDev123/SPA_Dashboard_Cryptocoins_Dacxi/" target="_blank">
-                    GitHub Rep.
-                </a>
-                <a class='px-2' href="https://dashboard-cryptocoins-dacxi-rd10nh7z1-christiandev123.vercel.app/">
-                    Vercel Deploy
-                </a>
+                <ButtonHeader v-for="button,index in dataLinks" :key="index"  :dataButton="button"/>
             </div>
         </div>
         <hr>
     </section>
 </template>
 <style scoped>
-    a{
-        color:#808080;
-        font-weight: 500;
-    }
-    a:hover{
-        color:var(--primary);
-        transition:.5s;
-    }
     hr{
-        background:var(--line-datail);
+        background:var(--line-detail);
     }
     h1{
         color:var(--primary);
@@ -103,14 +87,23 @@
 <script> 
 import moonIcon from '../../assets/img/moonIcon.svg';
 import sunIcon from '../../assets/img/sunIcon.svg';
+import ButtonHeader from '../ButtonHeader/ButtonHeader.vue';
     export default {
         name:"Header",
         emits:['theme'],
         data(){
             return{
                 theme:false,
-                buttonImage:sunIcon
+                buttonImage:sunIcon,
+                dataLinks:[
+                    {text:'LinkedIn Dev', link:'https://www.linkedin.com/in/christian-santana-040821214/'},
+                    {text:'GitHub Rep.', link:'https://github.com/ChristianDev123/SPA_Dashboard_Cryptocoins_Dacxi/'},
+                    {text:'Vercel Deploy', link:'https://dashboard-cryptocoins-dacxi-rd10nh7z1-christiandev123.vercel.app/'}
+                ]
             }
+        },
+        components:{
+            ButtonHeader
         },
         methods:{
             changeTheme(){

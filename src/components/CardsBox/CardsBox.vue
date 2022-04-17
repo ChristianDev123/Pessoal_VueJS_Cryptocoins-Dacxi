@@ -3,15 +3,18 @@
         <div class="mainCard mb-10 lg:mb-0">
             <MainCard :dataCoin="bitcoinData"/>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div class="py-3 lg:py-10"
-                v-for="coins in coinsData"
-                :key="coins.id">
-                <RowCards :dataCoin="coins"/>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 py-7">
+            <RowCards v-for="coins,index in coinsData" :key="index" :dataCoin="coins"/>
         </div>
         <div>
             <h2 class='text-center py-2'> Bitcoin's price in an interval of three days</h2>
+            <div class='py-2'>
+                <select id='selectorInput' class='rounded' @change="APIReceiverChart">
+                    <option value="3days" selected>Last 3 Days</option>
+                    <option value="3weeks">Las 3 Weeks</option>
+                    <option value="3months">Last 3 Months</option>
+                </select>
+            </div>
             <div id='chartWrapper'>
                 <ChartBitcoin :dataBitcoin="bitcoinDataLastThreedays"/>
             </div>
@@ -99,7 +102,15 @@ import ChartBitcoin from '../ChartBitcoin/ChartBitcoin.vue';
                 this.coinsData.push(object);
             },
             APIReceiverChart(){
-                fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3&interval=daily")
+                var url;
+                if(this.verifySelect() === "3days"){
+                    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3&interval=daily";
+                }else if(this.verifySelect() === "3weeks"){
+                    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=21&interval=daily";
+                }else{
+                    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=90&interval=daily";
+                }
+                fetch(url)
                 .then((response)=>response.json())
                 .then((json)=>{
                     this.tratamentDataChart(json.prices);
@@ -122,9 +133,13 @@ import ChartBitcoin from '../ChartBitcoin/ChartBitcoin.vue';
                         borderWidth:3
                     }]
                 }
-            }
+            },
+            verifySelect(){
+                const selectInput = document.querySelector("#selectorInput");
+                return selectInput.options[selectInput.selectedIndex].value;
+            },
         },
-        created(){
+        mounted(){
             this.APIReceiver();
             setInterval(()=>this.APIReceiver(),60000);
             this.APIReceiverChart();

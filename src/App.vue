@@ -47,6 +47,7 @@
   .darkModeApp span{
     color:var(--white);
   }
+  .darkModeApp .nameSection h2,
   .darkModeApp h1{
     color:var(--important-texts);
     text-shadow: 1px 1px 1px white;
@@ -85,6 +86,7 @@
     width:70vw;
   }
 </style>
+
 <script>
   import Header from './components/HeaderBox/HeaderBox.vue';
   import Footer from './components/Footer/Footer.vue';
