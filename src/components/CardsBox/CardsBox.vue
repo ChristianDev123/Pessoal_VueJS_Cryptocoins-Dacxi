@@ -27,6 +27,9 @@
         border-radius:10px;
         padding:5px;
     }
+    #selectorInput{
+        border:2px solid var(--primary);
+    }
 </style>
 <script>
 import MainCard from '../mainCard/mainCard.vue';
