@@ -1,57 +1,6 @@
-# Projeto DashBoard CryptoCoins Dacxi
+# DashBoard CryptoCoins Dacxi
 
-## Tecnologias utilizadas:
-- Vue 3 (CLI);
-- Tailwind 3;
-- Vue-Chart.js (Componentização do chart.js para vue);
-- API CoinGecko (Fonte de dados de cotação de Criptomoedas);
-
-## Passo-a-Passo para instalação do projeto:
-> Certifique-se de já ter instalado o cliente git em sua máquina!
-
-```CMD
-git clone https://github.com/ChristianDev123/SPA_Dashboard_Cryptocoins_Dacxi.git
-(Para instanciar uma copia do projeto)
-```
-```CMD
-No Windows: cd SPA_Dashboard_Cryptocoins_Dacxi
-(Para entrar no diretório do projeto)
-```
-
-```CMD
-yarn add @vue/cli
-    ou
-npm install @vue/cli
-(Instala a interface de linha de comando do vue, será necessário para comandar o projeto)
-```
-
-```CMD
-yarn install
-    ou
-npm install
-(Instala as dependências do projeto, ou seja as bibliotecas que o arquivo package.json aponta)
-```
-
-```CMD
-yarn serve
-    ou
-npm run serve
-(Incia o servidor de desenvolvimento da aplicação)
-```
-
-```browser
-http://localhost:8080
-(No navegador pesquise por esta url)
-```
-
-> Após configurar o arquivo vue.config.js para cada plataforma de deploy...
-
-```CMD
-yarn build
-    ou 
-npm build
-(Inicia a criação de aquivos estáticos da aplicação, ou seja converte o código escrito em arquivos .vue em arquivos HTML, CSS e Java Script)
-```
+Este foi o meu primeiro projeto desenvolvido no Framework Vue JS. Foi Realizado com a finalidade de participar de um processo seletivo na empresa Dacxi.
 
 ## Explicação de tomadas de decisões realizadas no projeto:
 
@@ -70,7 +19,53 @@ npm build
 7. Deploy na vercel
     > A vercel é uma ótima plataforma de deploy de aplicações front-end. E até então só havia utilizado o framework/biblioteca ReactJS nos projetos que hospedei na plataforma. Outro desafio pessoal seria subir um projeto em vue na plataforma.
 
-### Explicações sobre o projeto
-> Este foi o meu primeiro projeto desenvolvido no Framework Vue JS.
-> Senti uma grande facilidade em utiliza-lo por conta de já ter experiência na utilização na biblioteca ReactJS.
-> Este projeto foi Realizado com a finalidade de participar de um processo seletivo na empresa Dacxi.
+## Imagens da aplicação:
+
+![Imagem Dark Theme Aplicação](https://github.com/ChristianDev123/Pessoal_VueJS_Cryptocoins-Dacxi/blob/main/Dashboard_page-0001.jpg)
+
+![Imagem Light Theme Aplicação](https://github.com/ChristianDev123/Pessoal_VueJS_Cryptocoins-Dacxi/blob/main/Dashboard_page-0002.jpg)
+
+## Como instalar localmente:
+
+> Certifique-se de já ter instalado o cliente git em sua máquina!
+
+Siga os seguintes passos no CMD do Windows ou Bash do Linux:
+
+```CMD
+    git clone https://github.com/ChristianDev123/SPA_Dashboard_Cryptocoins_Dacxi.git
+```
+```CMD
+    cd SPA_Dashboard_Cryptocoins_Dacxi
+```
+```CMD
+    yarn add @vue/cli
+        ou
+    npm install @vue/cli
+```
+```CMD
+    yarn install
+        ou
+    npm install
+```
+```CMD
+    yarn serve
+        ou
+    npm run serve
+```
+```cmd
+    start chrome http://localhost:8080
+```
+
+> Após configurar o arquivo vue.config.js para cada plataforma de deploy...
+
+```CMD
+    yarn build
+        ou 
+    npm build
+```
+
+## Tecnologias utilizadas:
+- Vue 3 (CLI);
+- Tailwind 3;
+- Vue-Chart.js (Componentização do chart.js para vue);
+- API CoinGecko (Fonte de dados de cotação de Criptomoedas);
